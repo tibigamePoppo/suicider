@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74f33fa28dd9ca94ab19efe0f04f1559, type: 3}
+  m_Name: STAGE7
+  m_EditorClassIdentifier: 
+  stageName: "\u6751"
+  sutageNum: 6
+  stage: {fileID: 7208402338507809280, guid: f66f3212d6ae1014298b411e3138e899, type: 3}
+  targetTurn: 8
