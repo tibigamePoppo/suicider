@@ -3,7 +3,7 @@
 /// SE‰¹Œ¹‚ÌŽí—Þ
 /// </summary>
 
-namespace System.Audio
+namespace Audio
 {
     public enum SeType
     {

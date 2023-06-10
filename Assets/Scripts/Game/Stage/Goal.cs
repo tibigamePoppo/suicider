@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Audio;
 
 public class Goal : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class Goal : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log($"Goal.lastStage{lastStage}");
+            SeManager.Instance.ShotSe(SeType.ScrollOpen);
             stage.StageGoal(lastStage);
         }
     }

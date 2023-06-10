@@ -3,6 +3,7 @@ using DG.Tweening;
 using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine;
+using Audio;
 
 public class TitleStart : MonoBehaviour
 {
@@ -33,6 +34,7 @@ public class TitleStart : MonoBehaviour
     IEnumerator ChengeScene()
     {
         yield return new WaitUntil(() => Input.anyKey);
+        SeManager.Instance.ShotSe(SeType.Select);
         tweener.Kill();
         tweener = TMPro.DOFade(1, 0);   // アルファ値を1にする
         tweener = TMPro.DOFade(0.0f, selectSpeed)   // アルファ値を0にしていく
