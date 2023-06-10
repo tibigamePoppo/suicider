@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// ‚Ç‚±‚©‚ç‚Å‚à“Á’è‚ÌSE‚ðShotSe‚ð’Ê‚¶‚Ä–Â‚ç‚·‚±‚Æ‚ª‚Å‚«‚é
 /// </summary>
-namespace System.Audio
+namespace Audio
 {
     public class SeManager : MonoBehaviour
     {

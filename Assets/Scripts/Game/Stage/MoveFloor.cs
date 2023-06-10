@@ -7,11 +7,16 @@ public class MoveFloor : MonoBehaviour
     private float time;
     [SerializeField]
     private Vector2 movePosition;
+    Tweener tweener;
     void Start()
     {
-        transform.DOMove(movePosition, time)
+        tweener = transform.DOMove(movePosition, time)
             .SetRelative()
             .SetEase(Ease.Linear)
             .SetLoops(-1, LoopType.Yoyo);
+    }
+    private void OnDestroy()
+    {
+        tweener.Kill();
     }
 }

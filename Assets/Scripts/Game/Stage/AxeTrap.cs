@@ -13,11 +13,17 @@ public class AxeTrap : MonoBehaviour
     LoopType type = LoopType.Yoyo;
     [SerializeField]
     Ease ease = Ease.InOutQuad;
+    Tweener tweener;
     void Start()
     {
         transform.DOLocalRotate(new Vector3(0, 0, startDgree), 0, RotateMode.FastBeyond360);
-        transform.DOLocalRotate(new Vector3(0, 0, returnDgree), time, RotateMode.FastBeyond360)
+        tweener = transform.DOLocalRotate(new Vector3(0, 0, returnDgree), time, RotateMode.FastBeyond360)
             .SetEase(ease)
             .SetLoops(-1, type);
+    }
+
+    private void OnDestroy()
+    {
+        tweener.Kill();
     }
 }

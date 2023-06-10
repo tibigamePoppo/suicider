@@ -1,4 +1,5 @@
 using UnityEngine;
+using Audio;
 
 public class PanelVisual : MonoBehaviour
 {
@@ -11,6 +12,10 @@ public class PanelVisual : MonoBehaviour
     /// </summary>
     public void ChangeVisual(bool value)
     {
+        if(value)
+        {
+            SeManager.Instance.ShotSe(SeType.ScrollOpen);
+        }
         targetPanel.SetActive(value);
     }
 }

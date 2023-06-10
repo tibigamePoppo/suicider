@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using GameStage;
+using Audio;
 
 namespace GameSystem
 {
@@ -63,6 +64,7 @@ namespace GameSystem
         {
             if (useTurn)
             {
+                SeManager.Instance.ShotSe(SeType.Dead);
                 turn++;
                 turnChange?.Invoke(turn);
             }
@@ -82,6 +84,7 @@ namespace GameSystem
         public void NextStage()
         {
             if (stage.state != Stage.stageState.ruslt || mode != gameMode.Over) return;
+            SeManager.Instance.ShotSe(SeType.Select);
             stageNum++;
             if (maxStage > stageNum)
             {
