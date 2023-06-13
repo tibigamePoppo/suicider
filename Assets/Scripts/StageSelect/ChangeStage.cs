@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using GameSystem;
 using UnityEngine.SceneManagement;
@@ -20,6 +18,9 @@ namespace StageSelect
                     break;
                 case StageType.forest:
                     GameManager.stageNum = 6;
+                    break;
+                case StageType.final:
+                    GameManager.stageNum = 10;
                     break;
                 default:
                     break;

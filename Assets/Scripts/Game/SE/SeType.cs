@@ -10,6 +10,8 @@ namespace Audio
         Dead,
         Goal,
         ScrollOpen,
-        Select
+        Select,
+        Spell,
+        EnemyAttack
     }
 }
