@@ -22,9 +22,17 @@ namespace Enemy
         private float attackWeight;
         [SerializeField]
         private float moveWeight;
+        [SerializeField]
+        private float spellWeight;
         private float baseIdleWeight = 1;
         private float baseAttackWeight = 1;
         private float baseMoveWeight = 1;
+        private float baseSpellWeight = 1;
+        private float IdleCountWeight = 1;
+        private float moveDistanceWeight = 1;
+        private float attackDistanceWeight = 1;
+        private float attackPlayerPosWeight = 0.8f;
+        private float spellDistanceWeight = 1;
 
         private GameObject Player;
         void Start()
@@ -54,6 +62,7 @@ namespace Enemy
                         stater.ChangeState(EnemyState.Attack);
                         break;
                     case EnemyState.Action1:
+                        stater.ChangeState(EnemyState.Action1);
                         break;
                     default:
                         break;
@@ -74,7 +83,7 @@ namespace Enemy
         /// </summary>
         private EnemyState ActionState()
         {
-            float fullValue = IdleValue() + AttackValue() + MoveValue();
+            float fullValue = IdleValue() + AttackValue() + MoveValue() + SpellValue();
             float RandomAvtionValue = UnityEngine.Random.Range(0, fullValue);
             Debug.Log(RandomAvtionValue);
             if (RandomAvtionValue < IdleValue())
@@ -85,9 +94,13 @@ namespace Enemy
             {
                 return EnemyState.Attack;
             }
-            else
+            else if (RandomAvtionValue < IdleValue() + AttackValue() + MoveValue())
             {
                 return EnemyState.Walk;
+            }
+            else
+            {
+                return EnemyState.Action1;
             }
 
         }
@@ -97,21 +110,54 @@ namespace Enemy
         /// </summary>
         private float IdleValue()
         {
-            return baseIdleWeight * idleWeight;
+            IdleCountWeight *= 0.8f;
+            return baseIdleWeight * idleWeight * IdleCountWeight;
         }
         /// <summary>
         /// 攻撃状態の可能性の基礎値と攻撃の可能性の重みを合わせた数値
         /// </summary>
         private float AttackValue()
         {
-            return baseAttackWeight * attackWeight;
+            //プレイヤーとの距離が近いかどうか
+            if (PlayerDistance() <= 2.2) attackDistanceWeight = 1.6f;
+            else attackDistanceWeight = 1;
+
+            //プレイヤーが左にいるかどうか
+            if (Player.transform.position.x + 0.8f > transform.position.x) attackPlayerPosWeight = 1.2f;
+            else attackPlayerPosWeight = 0.8f;
+
+                return baseAttackWeight * attackWeight * attackDistanceWeight * attackPlayerPosWeight;
         }
         /// <summary>
         /// 移動状態の可能性の基礎値と移動の可能性の重みを合わせた数値
         /// </summary>
         private float MoveValue()
         {
-            return baseMoveWeight * moveWeight;
+            if (PlayerDistance() >= 4) moveDistanceWeight = 1.4f;
+            else moveDistanceWeight = 1;
+            return baseMoveWeight * moveWeight * moveDistanceWeight;
+        }
+        /// <summary>
+        /// 固有アクション状態の可能性の基礎値と 固有アクションの可能性の重みを合わせた数値
+        /// </summary>
+        private float SpellValue()
+        {
+            if (PlayerDistance() >= 6) spellDistanceWeight = 2.4f;
+            else if (PlayerDistance() >= 4) spellDistanceWeight = 1.8f;
+            else spellDistanceWeight = 1;
+            return baseSpellWeight * spellWeight * spellDistanceWeight;
+        }
+        
+        private float PlayerDistance()
+        {
+            float value = 100;
+            if (Player == null) getPlayer();
+            if (Player != null)
+            {
+                value = Vector3.Distance(Player.transform.position, transform.position);
+            }
+
+            return value;
         }
     }
 }

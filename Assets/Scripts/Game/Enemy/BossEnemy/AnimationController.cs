@@ -17,10 +17,6 @@ namespace Enemy
         {
             animator.SetTrigger("Spell");
         }
-        public void Hurt()
-        {
-            animator.SetTrigger("Hurt");
-        }
         public void Walk(bool value)
         {
             animator.SetBool("Walk", value);

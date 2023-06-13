@@ -1,3 +1,4 @@
+using Audio;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,11 +14,12 @@ namespace Enemy
         private GameObject DamageColleder;
         [Header("êîíl")]
         [SerializeField]
-        private float timer;
+        private float startTimer;
+        [SerializeField]
+        private float endTimer;
         public void StateAction()
         {
             animationController.Attack();
-            DamageColleder.SetActive(true);
             StartCoroutine(CollederActiveFalseTimer());
         }
 
@@ -27,7 +29,10 @@ namespace Enemy
         
         IEnumerator CollederActiveFalseTimer()
         {
-            yield return new WaitForSeconds(timer);
+            yield return new WaitForSeconds(startTimer);
+            SeManager.Instance.ShotSe(SeType.EnemyAttack);
+            DamageColleder.SetActive(true);
+            yield return new WaitForSeconds(endTimer);
             DamageColleder.SetActive(false);
         }
 

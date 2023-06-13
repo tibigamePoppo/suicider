@@ -2111,7 +2111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stage: {fileID: 1388270409}
-  developTest: 1
+  developTest: 0
   developStageNum: 10
 --- !u!4 &1604684972
 Transform:

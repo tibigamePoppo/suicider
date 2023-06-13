@@ -13,6 +13,8 @@ namespace Enemy
         private EnemyIdle Idle;
         [SerializeField]
         private EnemyAttack Attack;
+        [SerializeField]
+        private EnemySpell Spell;
         private EnemyState state;
 
         public void ChangeState(EnemyState s)
@@ -29,6 +31,7 @@ namespace Enemy
                     Attack.StateEndAction();
                     break;
                 case EnemyState.Action1:
+                    Spell.StateEndAction();
                     break;
                 default:
                     break;
@@ -46,6 +49,7 @@ namespace Enemy
                     Attack.StateAction();
                     break;
                 case EnemyState.Action1:
+                    Spell.StateAction();
                     break;
                 default:
                     break;

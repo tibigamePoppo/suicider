@@ -2,5 +2,6 @@
 public enum StageType
 {
     cave,
-    forest
+    forest,
+    final
 }

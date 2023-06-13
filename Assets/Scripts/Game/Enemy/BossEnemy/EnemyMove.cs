@@ -34,7 +34,7 @@ namespace Enemy
             {
                 if (Player == null) Player = getPlayer();
                 Vector3 velocity = Vector3.zero;
-                if (Player.transform.position.x > transform.position.x)
+                if (Player.transform.position.x + 0.8f > transform.position.x)
                 {
                     velocity.x++;
                 }
